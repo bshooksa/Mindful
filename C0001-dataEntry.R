@@ -158,5 +158,10 @@ dim(data)  # 97 x 1608
     sample.include = which(!is.na(data$treatmgroup_nr))  # subject numbers of both arms
   ###############################################################################################
 
-  data.working = data[sample.include, var.include]
+  data.working = data[sample.include, var.include$variable]
   saveRDS(data.working, "data.working.rds")
+  
+  # Proportion of missing values for each variable
+  varNA(data.working)
+  
+  

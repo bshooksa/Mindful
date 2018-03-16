@@ -10,3 +10,6 @@ alpha.ci <- function(x, digits = 2) {
           x$total$raw_alpha, 
           x$total$raw_alpha + 1.96 * x$total$ase), digits = digits)
 }
+
+# proportion of missing for each variable
+varNA <- function(data, digit=3) sapply(data, function(x) mean(is.na(x))) %>% round(digit)
