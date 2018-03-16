@@ -122,10 +122,10 @@ dim(data)  # 97 x 1608
     names(data)[c(187,197)] <- c("brpsq3", "brpsq13")
     
     comorbidity = data.frame(bl = c(paste0("brpsq", 1:26), "RPSQsom"),
-                          fu = c(paste0("rpsq", 1:26), "RPSQsom_fu"),
-                          mo3 = c(paste0("rpsq", 1:26, "_3mo"), "RPSQsom_3mo"),
-                          mo6 = c(paste0("rpsq", 1:26, "_6mo"), "RPSQsom_6mo"),
-                          mo12 = c(paste0("rpsq", 1:26, "_12mo"), "RPSQsom_12mo"),
+                          fu = c(paste0("rpsq", 1:26), "RPSQSom_fu"),
+                          mo3 = c(paste0("rpsq", 1:26, "_3mo"), "RPSQSom_3mo"),
+                          mo6 = c(paste0("rpsq", 1:26, "_6mo"), "RPSQSom_6mo"),
+                          mo12 = c(paste0("rpsq", 1:26, "_12mo"), "RPSQSom_12mo"),
                           stringsAsFactors=FALSE)
     
     var.comorbid = data.frame(variable =  as.vector(as.matrix(comorbidity)),
@@ -158,10 +158,7 @@ dim(data)  # 97 x 1608
     sample.include = which(!is.na(data$treatmgroup_nr))  # subject numbers of both arms
   ###############################################################################################
 
-  data.working = data[sample.include, var.include$variable]
+  data.working = data[sample.include, var.include$variable %>% as.character]
   saveRDS(data.working, "data.working.rds")
-  
-  # Proportion of missing values for each variable
-  varNA(data.working)
   
   
