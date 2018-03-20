@@ -74,7 +74,7 @@ dim(data)  # 97 x 1608
   
       # anger variables in a vector
         anger.vector <- do.call(c, do.call(c, anger)) %>% as.vector
-        var.anger <- data.frame(variable = anger.vector,
+        var.anger <- data.frame(variable = anger.vector %>% as.character,
                                 category = "anger",
                                 time = do.call(c, sapply(c(9,7,5,5), function(s) rep(c("bl", "fu", "3mo", "6mo", "12mo"), each=s))))
       # factor into numeric
@@ -105,7 +105,9 @@ dim(data)  # 97 x 1608
       order(gsub("q", "", gsub("_b", "", FILE$bl)) %>% as.numeric) == 1:71 # check if they are in the order
       order(gsub("q", "", FILE$hist) %>% as.numeric) == 1:71 # check if they are in the order
     FILE.vector = do.call(c, FILE)
-    var.FILE = data.frame(variable = FILE.vector, category = "FILE", time = rep(c("common", "common-hist"), each=71))
+    var.FILE = data.frame(variable = FILE.vector %>% as.character, 
+                          category = "FILE", 
+                          time = rep(c("common", "common-hist"), each=71))
     
     # factor into numeric
     for (i in FILE.vector) data[, i] %<>% as.numeric  # yes = 1, no = 2
@@ -128,7 +130,7 @@ dim(data)  # 97 x 1608
                           mo12 = c(paste0("rpsq", 1:26, "_12mo"), "RPSQSom_12mo"),
                           stringsAsFactors=FALSE)
     
-    var.comorbid = data.frame(variable =  as.vector(as.matrix(comorbidity)),
+    var.comorbid = data.frame(variable =  comorbidity %>% as.matrix %>% as.vector %>% as.character,
                               category = "comorbidity",
                               time = rep(c("bl", "fu", "3mo", "6mo", "12mo"), each=27))
     
@@ -140,15 +142,15 @@ dim(data)  # 97 x 1608
                        mo12 = paste(c("wpai_q11","wpai_q12","hrs_m1","hrs_m2","hours1","wpai_q5","wpai_q6"),"_12mo",sep=""),
                        stringsAsFactors=FALSE)
     
-    var.work = data.frame(variable =  as.vector(as.matrix(work)),
+    var.work = data.frame(variable =  work %>% as.matrix %>% as.vector %>% as.character,
                           category = "work productivity",
                           time = rep(c("bl", "fu", "3mo", "6mo", "12mo"), each=7))
     
   ## 0.2.6 coping strategy
-    (ADD codes HERE)  
-    var.coping = data.frame(variable = ,
-                              category = "coping",
-                              time = )
+    #(ADD codes HERE)  
+    #var.coping = data.frame(variable = ,
+    #                          category = "coping",
+    #                          time = )
     
   ## var.include, sample.include ################################################################
     var.include = data.frame(variable = c('id', 'treatmgroup_nr', 'cohort', 'treatm_sessions'), 
@@ -159,7 +161,7 @@ dim(data)  # 97 x 1608
     var.include = rbind(var.include, var.FILE)  # adding FILE variables
     var.include = rbind(var.include, var.comorbid)  # adding comorbidity variables
     var.include = rbind(var.include, var.work)  # adding work variables
-    var.include = rbind(var.include, var.coping)  # adding coping variables
+  #  var.include = rbind(var.include, var.coping)  # adding coping variables
     
     sample.include = which(!is.na(data$treatmgroup_nr))  # subject numbers of both arms
   ###############################################################################################
