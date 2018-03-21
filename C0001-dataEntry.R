@@ -184,10 +184,18 @@ dim(data)  # 97 x 1608
     
     
   ## 0.2.6 coping strategy
-    #(ADD codes HERE)  
-    #var.coping = data.frame(variable = ,
-    #                          category = "coping",
-    #                          time = )
+    extractVar("csq")
+    
+    coping = data.frame(bl = paste0("bcsq_", 1:48),
+                        fu = paste0("csq_", 1:48),
+                        mo3 = paste0("csq_", 1:48, "_3mo"),
+                        mo6 = paste0("csq_", 1:48, "_6mo"),
+                        mo12 = paste0("csq_", 1:48, "_12mo"),
+                        stringsAsFactors=FALSE)
+    
+    var.coping = data.frame(variable =  as.vector(as.matrix(coping)),
+                            category = "coping",
+                            time = rep(c("bl", "fu", "3mo", "6mo", "12mo"), each=48))
     
   ## var.include, sample.include ################################################################
     var.include = data.frame(variable = c('id', 'treatmgroup_nr', 'cohort', 'treatm_sessions'), 
