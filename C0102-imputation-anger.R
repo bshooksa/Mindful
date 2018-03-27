@@ -15,9 +15,12 @@
   
 # 1.0 imputation - anger
   tmp <- varSet(category="anger", covariate = c("base", "demographic", "IBSS"))
-  m <- 30 # number of imputations
+  m <- 25 # number of imputations
   set.seed(100)
   data.anger.imp <- mice(data.working[,tmp$variable], m=m)
   data.anger.list <- lapply(1:m, function(i) complete(data.anger.imp, action = i))
   saveRDS(data.anger.list, "data.anger.list.rds")
+  
+  
+  tmp <- varSet(category="work productivity", covariate = c("base", "demographic", "IBSS"))
   
