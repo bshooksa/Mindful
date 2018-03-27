@@ -1,7 +1,7 @@
 # returns a set of variables of a specific category at a specific time point
 varSet <- function (category = "anger", time="bl", covariate = NULL, var.data = var.include) {
   # screening
-  if (time == "all") {time = .timePoints}
+  if (time[1] == "all") {time = .timePoints}
   if (! all (time %in% .timePoints)) 
     stop (paste ("Each time variable should be one of ", paste(.timePoints, collapse = ", ")))
   if (! all (category %in% .categories)) 
