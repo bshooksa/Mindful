@@ -29,7 +29,11 @@ dim(data)  # 97 x 1608
 
 #### 0.2 data scoping ############################################################################
   ## 0.2.0 id, basic
+<<<<<<< HEAD
     var.id = data.frame(variable = "id", category = "id", time = "common")
+=======
+    var.id = data.frame(variable = "id", category = "demographic", time = "common")
+>>>>>>> 96fcfe1c0d4dcb73d0890b004bf27b9a022e95f1
     var.base = data.frame(variable = c('treatmgroup_nr', 'cohort', 'treatm_sessions'), 
                              category = "base", 
                              time = "common") ## include basic variables
@@ -37,6 +41,7 @@ dim(data)  # 97 x 1608
                           category = "demographic",
                           time = "common")
     
+<<<<<<< HEAD
     #factors into ordered factors
     data$income %<>% ordered
     data$income %>% levels # make sure it's properly ordered
@@ -48,6 +53,8 @@ dim(data)  # 97 x 1608
     data$treatm_sessions %<>% as.character %<>% as.factor
 
     
+=======
+>>>>>>> 96fcfe1c0d4dcb73d0890b004bf27b9a022e95f1
   ## 0.2.1 IBSS
     extractVar("IBS_severit")
     extractVar("IBS_severit.*_ITT")
