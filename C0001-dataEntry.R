@@ -37,6 +37,17 @@ dim(data)  # 97 x 1608
                           category = "demographic",
                           time = "common")
     
+    #factors into ordered factors
+    data$income %<>% ordered
+    data$income %>% levels # make sure it's properly ordered
+    
+    data$education %<>% ordered
+    data$education %>% levels # make sure it's properly ordered
+    
+    #numeric into factors
+    data$treatm_sessions %<>% as.character %<>% as.factor
+
+    
   ## 0.2.1 IBSS
     extractVar("IBS_severit")
     extractVar("IBS_severit.*_ITT")
@@ -184,6 +195,6 @@ dim(data)  # 97 x 1608
   ###############################################################################################
 
   data.working = data[sample.include, var.include$variable %>% as.character]
-  saveRDS(data.working, "data.working.rds")
+  #saveRDS(data.working, "data.working.rds")
   
   
