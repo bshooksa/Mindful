@@ -28,6 +28,15 @@ dim(data)  # 97 x 1608
     tmp %>% unique %>% length                 # 117 unique categories + main category
 
 #### 0.2 data scoping ############################################################################
+  ## 0.2.0 id, basic
+    var.id = data.frame(variable = "id", category = "demographic", time = "common")
+    var.base = data.frame(variable = c('treatmgroup_nr', 'cohort', 'treatm_sessions'), 
+                             category = "base", 
+                             time = "common") ## include basic variables
+    var.demo = data.frame(variable = c( "age", "gender", "race_1", "marital", "income", "education", "profession"),
+                          category = "demographic",
+                          time = "common")
+    
   ## 0.2.1 IBSS
     extractVar("IBS_severit")
     extractVar("IBS_severit.*_ITT")
@@ -162,9 +171,8 @@ dim(data)  # 97 x 1608
                             time = rep(c("bl", "fu", "3mo", "6mo", "12mo"), each=48))
     
   ## var.include, sample.include ################################################################
-    var.include = data.frame(variable = c('id', 'treatmgroup_nr', 'cohort', 'treatm_sessions'), 
-                             category = "base", 
-                             time = "common") ## include basic variables
+    var.include = rbind(var.id, var.base)       # id and base(trt,...)
+    var.include = rbind(var.include, var.demo)  # adding demographic variables
     var.include = rbind(var.include, var.IBSS)  # adding IBSS variables
     var.include = rbind(var.include, var.anger) # adding anger variables
     var.include = rbind(var.include, var.FILE)  # adding FILE variables
