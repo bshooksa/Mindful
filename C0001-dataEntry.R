@@ -41,7 +41,6 @@ dim(data)  # 97 x 1608
                           category = "demographic",
                           time = "common")
     
-<<<<<<< HEAD
     #factors into ordered factors
     data$income %<>% ordered
     data$income %>% levels # make sure it's properly ordered
@@ -52,9 +51,6 @@ dim(data)  # 97 x 1608
     #numeric into factors
     data$treatm_sessions %<>% as.character %<>% as.factor
 
-    
-=======
->>>>>>> 96fcfe1c0d4dcb73d0890b004bf27b9a022e95f1
   ## 0.2.1 IBSS
     extractVar("IBS_severit")
     extractVar("IBS_severit.*_ITT")
