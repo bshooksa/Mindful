@@ -29,14 +29,11 @@ dim(data)  # 97 x 1608
 
 #### 0.2 data scoping ############################################################################
   ## 0.2.0 id, basic
-<<<<<<< HEAD
+
     var.id = data.frame(variable = "id", category = "id", time = "common")
-=======
-    var.id = data.frame(variable = "id", category = "demographic", time = "common")
->>>>>>> 96fcfe1c0d4dcb73d0890b004bf27b9a022e95f1
     var.base = data.frame(variable = c('treatmgroup_nr', 'cohort', 'treatm_sessions'), 
-                             category = "base", 
-                             time = "common") ## include basic variables
+                          category = "base", 
+                          time = "common") ## include basic variables
     var.demo = data.frame(variable = c( "age", "gender", "race_1", "marital", "income", "education", "profession"),
                           category = "demographic",
                           time = "common")
