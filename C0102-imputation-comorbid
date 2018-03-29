@@ -1,0 +1,20 @@
+# 0.0 library 
+  source("C0001-dataEntry.R")
+  source("F0101-variableSet.R")
+
+# 0.1 list of time points and variable categories
+  .timePoints
+  .categories
+
+# 0.2 variable subsetting examples: "F0101-variableSet.R" required
+  if (FALSE) {
+    varSet(category="comorbidity", time = "all", covariate = c("base", "demographic", "IBSS"))
+   }
+  
+# 1.0 imputation - comorbidity
+  tmp <- varSet(category="comorbidity", covariate = c("base", "demographic", "IBSS"))
+  m <- 25 # number of imputations
+  set.seed(100)
+  data.comorbid.imp <- mice(data.working[,tmp$variable], m=m)
+  data.comorbid.list <- lapply(1:m, function(i) complete(data.comorbid.imp, action = i))
+  saveRDS(data.comorbid.list, "data.comorbid.list.rds")
